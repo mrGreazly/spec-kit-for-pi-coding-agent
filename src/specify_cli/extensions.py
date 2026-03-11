@@ -708,6 +708,12 @@ class CommandRegistrar:
             "args": "$ARGUMENTS",
             "extension": ".md"
         },
+        "pi": {
+            "dir": ".pi/prompts",
+            "format": "markdown",
+            "args": "$ARGUMENTS",
+            "extension": ".md"
+        },
         "windsurf": {
             "dir": ".windsurf/workflows",
             "format": "markdown",

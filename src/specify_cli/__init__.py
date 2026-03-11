@@ -265,6 +265,13 @@ AGENT_CONFIG = {
         "install_url": "https://github.com/mistralai/mistral-vibe",
         "requires_cli": True,
     },
+    "pi": {
+        "name": "Pi",
+        "folder": ".pi/",
+        "commands_subdir": "prompts",
+        "install_url": "https://www.npmjs.com/package/@mariozechner/pi-coding-agent",
+        "requires_cli": True,
+    },
     "generic": {
         "name": "Generic (bring your own agent)",
         "folder": None,  # Set dynamically via --ai-commands-dir
@@ -1512,7 +1519,7 @@ def init(
                 # repo we leave pre-existing commands untouched to avoid a
                 # breaking change.  We only delete AFTER skills succeed so the
                 # project always has at least one of {commands, skills}.
-                if skills_ok and not here:
+                if skills_ok and not here and selected_ai != "pi":
                     agent_cfg = AGENT_CONFIG.get(selected_ai, {})
                     agent_folder = agent_cfg.get("folder", "")
                     commands_subdir = agent_cfg.get("commands_subdir", "commands")

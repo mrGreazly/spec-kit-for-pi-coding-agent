@@ -172,6 +172,11 @@ class TestGetSkillsDir:
         result = _get_skills_dir(project_dir, "kiro-cli")
         assert result == project_dir / ".kiro" / "skills"
 
+    def test_pi_skills_dir(self, project_dir):
+        """Pi should use .pi/skills/."""
+        result = _get_skills_dir(project_dir, "pi")
+        assert result == project_dir / ".pi" / "skills"
+
     def test_unknown_agent_uses_default(self, project_dir):
         """Unknown agents should fall back to DEFAULT_SKILLS_DIR."""
         result = _get_skills_dir(project_dir, "nonexistent-agent")
@@ -525,6 +530,31 @@ class TestNewProjectCommandSkip:
 
         prompts_dir = target / ".kiro" / "prompts"
         assert not prompts_dir.exists()
+
+    def test_new_project_pi_prompts_preserved_after_skills_succeed(self, tmp_path):
+        """Pi keeps .pi/prompts even when --ai-skills succeeds."""
+        from typer.testing import CliRunner
+
+        runner = CliRunner()
+        target = tmp_path / "new-pi-proj"
+
+        def fake_download(project_path, *args, **kwargs):
+            self._fake_extract("pi", project_path)
+
+        with patch("specify_cli.download_and_extract_template", side_effect=fake_download), \
+             patch("specify_cli.ensure_executable_scripts"), \
+             patch("specify_cli.ensure_constitution_from_template"), \
+             patch("specify_cli.install_ai_skills", return_value=True) as mock_skills, \
+             patch("specify_cli.is_git_repo", return_value=False), \
+             patch("specify_cli.shutil.which", return_value="/usr/bin/git"):
+            result = runner.invoke(app, ["init", str(target), "--ai", "pi", "--ai-skills", "--script", "sh", "--no-git"])
+
+        assert result.exit_code == 0
+        mock_skills.assert_called_once()
+
+        prompts_dir = target / ".pi" / "prompts"
+        assert prompts_dir.exists()
+        assert (prompts_dir / "speckit.specify.md").exists()
 
     def test_commands_preserved_when_skills_fail(self, tmp_path):
         """If skills fail, commands should NOT be removed (safety net)."""

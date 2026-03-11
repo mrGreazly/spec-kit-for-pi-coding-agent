@@ -105,6 +105,73 @@ class TestAgentConfigConsistency:
         assert "Amazon Q Developer CLI" not in bash_text
         assert "Amazon Q Developer CLI" not in pwsh_text
 
+    # --- Pi consistency checks ---
+
+    def test_runtime_config_includes_pi(self):
+        """AGENT_CONFIG should include pi with correct folder and subdir."""
+        assert "pi" in AGENT_CONFIG
+        assert AGENT_CONFIG["pi"]["folder"] == ".pi/"
+        assert AGENT_CONFIG["pi"]["commands_subdir"] == "prompts"
+        assert AGENT_CONFIG["pi"]["requires_cli"] is True
+        assert AGENT_CONFIG["pi"]["install_url"] is not None
+
+    def test_extension_registrar_includes_pi(self):
+        """CommandRegistrar.AGENT_CONFIGS should include pi with Markdown prompt config."""
+        from specify_cli.extensions import CommandRegistrar
+
+        assert "pi" in CommandRegistrar.AGENT_CONFIGS
+        cfg = CommandRegistrar.AGENT_CONFIGS["pi"]
+        assert cfg["dir"] == ".pi/prompts"
+        assert cfg["format"] == "markdown"
+        assert cfg["args"] == "$ARGUMENTS"
+        assert cfg["extension"] == ".md"
+
+    def test_release_agent_lists_include_pi(self):
+        """Bash and PowerShell release scripts should include pi in agent lists."""
+        sh_text = (REPO_ROOT / ".github" / "workflows" / "scripts" / "create-release-packages.sh").read_text(encoding="utf-8")
+        ps_text = (REPO_ROOT / ".github" / "workflows" / "scripts" / "create-release-packages.ps1").read_text(encoding="utf-8")
+
+        sh_match = re.search(r"ALL_AGENTS=\(([^)]*)\)", sh_text)
+        assert sh_match is not None
+        sh_agents = sh_match.group(1).split()
+
+        ps_match = re.search(r"\$AllAgents = @\(([^)]*)\)", ps_text)
+        assert ps_match is not None
+        ps_agents = re.findall(r"'([^']+)'", ps_match.group(1))
+
+        assert "pi" in sh_agents
+        assert "pi" in ps_agents
+
+    def test_release_scripts_generate_pi_prompt_dir(self):
+        """Release scripts should generate Markdown prompt templates in .pi/prompts."""
+        sh_text = (REPO_ROOT / ".github" / "workflows" / "scripts" / "create-release-packages.sh").read_text(encoding="utf-8")
+        ps_text = (REPO_ROOT / ".github" / "workflows" / "scripts" / "create-release-packages.ps1").read_text(encoding="utf-8")
+
+        assert ".pi/prompts" in sh_text
+        assert ".pi/prompts" in ps_text
+        assert re.search(r"'pi'\s*\{.*?\.pi/prompts", ps_text, re.S) is not None
+
+    def test_github_release_includes_pi_packages(self):
+        """GitHub release script should include pi template packages."""
+        gh_release_text = (REPO_ROOT / ".github" / "workflows" / "scripts" / "create-github-release.sh").read_text(encoding="utf-8")
+
+        assert "spec-kit-template-pi-sh-" in gh_release_text
+        assert "spec-kit-template-pi-ps-" in gh_release_text
+
+    def test_agent_context_scripts_include_pi(self):
+        """Agent context scripts should support pi agent type."""
+        bash_text = (REPO_ROOT / "scripts" / "bash" / "update-agent-context.sh").read_text(encoding="utf-8")
+        pwsh_text = (REPO_ROOT / "scripts" / "powershell" / "update-agent-context.ps1").read_text(encoding="utf-8")
+
+        assert "pi" in bash_text
+        assert "PI_FILE" in bash_text
+        assert "pi" in pwsh_text
+        assert "$PI_FILE" in pwsh_text
+
+    def test_ai_help_includes_pi(self):
+        """CLI help text for --ai should include pi."""
+        assert "pi" in AI_ASSISTANT_HELP
+
     # --- Tabnine CLI consistency checks ---
 
     def test_runtime_config_includes_tabnine(self):
