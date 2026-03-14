@@ -272,6 +272,13 @@ AGENT_CONFIG = {
         "install_url": "https://code.kimi.com/",
         "requires_cli": True,
     },
+    "pi": {
+        "name": "Pi Coding Agent",
+        "folder": ".pi/",
+        "commands_subdir": "prompts",
+        "install_url": "https://www.npmjs.com/package/@mariozechner/pi-coding-agent",
+        "requires_cli": True,
+    },
     "generic": {
         "name": "Generic (bring your own agent)",
         "folder": None,  # Set dynamically via --ai-commands-dir
@@ -721,8 +728,8 @@ def merge_json_files(existing_path: Path, new_content: dict, verbose: bool = Fal
     return merged
 
 def download_template_from_github(ai_assistant: str, download_dir: Path, *, script_type: str = "sh", verbose: bool = True, show_progress: bool = True, client: httpx.Client = None, debug: bool = False, github_token: str = None) -> Tuple[Path, dict]:
-    repo_owner = "github"
-    repo_name = "spec-kit"
+    repo_owner = "mrgreazly"
+    repo_name = "spec-kit-for-pi-coding-agent"
     if client is None:
         client = httpx.Client(verify=ssl_context)
 
