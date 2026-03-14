@@ -51,7 +51,7 @@ Choose your preferred installation method:
 Install once and use everywhere:
 
 ```bash
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+uv tool install specify-cli --from git+https://github.com/mrgreazly/spec-kit-for-pi-coding-agent.git
 ```
 
 Then use the tool directly:
@@ -72,7 +72,7 @@ specify check
 To upgrade Specify, see the [Upgrade Guide](./docs/upgrade.md) for detailed instructions. Quick upgrade:
 
 ```bash
-uv tool install specify-cli --force --from git+https://github.com/github/spec-kit.git
+uv tool install specify-cli --force --from git+https://github.com/mrgreazly/spec-kit-for-pi-coding-agent.git
 ```
 
 #### Option 2: One-time Usage
@@ -81,12 +81,12 @@ Run directly without installing:
 
 ```bash
 # Create new project
-uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME>
+uvx --from git+https://github.com/mrgreazly/spec-kit-for-pi-coding-agent.git specify init <PROJECT_NAME>
 
 # Or initialize in existing project
-uvx --from git+https://github.com/github/spec-kit.git specify init . --ai claude
+uvx --from git+https://github.com/mrgreazly/spec-kit-for-pi-coding-agent.git specify init . --ai claude
 # or
-uvx --from git+https://github.com/github/spec-kit.git specify init --here --ai claude
+uvx --from git+https://github.com/mrgreazly/spec-kit-for-pi-coding-agent.git specify init --here --ai claude
 ```
 
 **Benefits of persistent installation:**
@@ -160,32 +160,32 @@ See Spec-Driven Development in action across different scenarios with these comm
 
 ## 🤖 Supported AI Agents
 
-| Agent                                                                                | Support | Notes                                                                                                                                     |
-| ------------------------------------------------------------------------------------ | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| [Qoder CLI](https://qoder.com/cli)                                                   | ✅      |                                                                                                                                           |
-| [Kiro CLI](https://kiro.dev/docs/cli/)                                               | ✅      | Use `--ai kiro-cli` (alias: `--ai kiro`)                                                                                                 |
-| [Amp](https://ampcode.com/)                                                          | ✅      |                                                                                                                                           |
-| [Auggie CLI](https://docs.augmentcode.com/cli/overview)                              | ✅      |                                                                                                                                           |
-| [Claude Code](https://www.anthropic.com/claude-code)                                 | ✅      |                                                                                                                                           |
-| [CodeBuddy CLI](https://www.codebuddy.ai/cli)                                        | ✅      |                                                                                                                                           |
-| [Codex CLI](https://github.com/openai/codex)                                         | ✅      |                                                                                                                                           |
-| [Cursor](https://cursor.sh/)                                                         | ✅      |                                                                                                                                           |
-| [Gemini CLI](https://github.com/google-gemini/gemini-cli)                            | ✅      |                                                                                                                                           |
-| [GitHub Copilot](https://code.visualstudio.com/)                                     | ✅      |                                                                                                                                           |
-| [IBM Bob](https://www.ibm.com/products/bob)                                          | ✅      | IDE-based agent with slash command support                                                                                                |
-| [Jules](https://jules.google.com/)                                                   | ✅      |                                                                                                                                           |
-| [Kilo Code](https://github.com/Kilo-Org/kilocode)                                    | ✅      |                                                                                                                                           |
-| [opencode](https://opencode.ai/)                                                     | ✅      |                                                                                                                                           |
-| [Pi Coding Agent](https://pi.dev)                                                    | ✅      | Uses project-level `.pi/prompts/` templates plus root `AGENTS.md` context files                                                          |
-| [Qwen Code](https://github.com/QwenLM/qwen-code)                                     | ✅      |                                                                                                                                           |
-| [Roo Code](https://roocode.com/)                                                     | ✅      |                                                                                                                                           |
-| [SHAI (OVHcloud)](https://github.com/ovh/shai)                                       | ✅      |                                                                                                                                           |
-| [Tabnine CLI](https://docs.tabnine.com/main/getting-started/tabnine-cli)             | ✅      |                                                                                                                                           |
-| [Mistral Vibe](https://github.com/mistralai/mistral-vibe)                            | ✅      |                                                                                                                                           |
-| [Kimi Code](https://code.kimi.com/)                                                  | ✅      |                                                                                                                                           |
-| [Windsurf](https://windsurf.com/)                                                    | ✅      |                                                                                                                                           |
-| [Antigravity (agy)](https://antigravity.google/)                                     | ✅      | Requires `--ai-skills` |
-| Generic                                                                              | ✅      | Bring your own agent — use `--ai generic --ai-commands-dir <path>` for unsupported agents                                                 |
+| Agent                                                                    | Support | Notes                                                                                     |
+| ------------------------------------------------------------------------ | ------- | ----------------------------------------------------------------------------------------- |
+| [Qoder CLI](https://qoder.com/cli)                                       | ✅       |                                                                                           |
+| [Kiro CLI](https://kiro.dev/docs/cli/)                                   | ✅       | Use `--ai kiro-cli` (alias: `--ai kiro`)                                                  |
+| [Amp](https://ampcode.com/)                                              | ✅       |                                                                                           |
+| [Auggie CLI](https://docs.augmentcode.com/cli/overview)                  | ✅       |                                                                                           |
+| [Claude Code](https://www.anthropic.com/claude-code)                     | ✅       |                                                                                           |
+| [CodeBuddy CLI](https://www.codebuddy.ai/cli)                            | ✅       |                                                                                           |
+| [Codex CLI](https://github.com/openai/codex)                             | ✅       |                                                                                           |
+| [Cursor](https://cursor.sh/)                                             | ✅       |                                                                                           |
+| [Gemini CLI](https://github.com/google-gemini/gemini-cli)                | ✅       |                                                                                           |
+| [GitHub Copilot](https://code.visualstudio.com/)                         | ✅       |                                                                                           |
+| [IBM Bob](https://www.ibm.com/products/bob)                              | ✅       | IDE-based agent with slash command support                                                |
+| [Jules](https://jules.google.com/)                                       | ✅       |                                                                                           |
+| [Kilo Code](https://github.com/Kilo-Org/kilocode)                        | ✅       |                                                                                           |
+| [opencode](https://opencode.ai/)                                         | ✅       |                                                                                           |
+| [Pi Coding Agent](https://pi.dev)                                        | ✅       | Uses project-level `.pi/prompts/` templates plus root `AGENTS.md` context files           |
+| [Qwen Code](https://github.com/QwenLM/qwen-code)                         | ✅       |                                                                                           |
+| [Roo Code](https://roocode.com/)                                         | ✅       |                                                                                           |
+| [SHAI (OVHcloud)](https://github.com/ovh/shai)                           | ✅       |                                                                                           |
+| [Tabnine CLI](https://docs.tabnine.com/main/getting-started/tabnine-cli) | ✅       |                                                                                           |
+| [Mistral Vibe](https://github.com/mistralai/mistral-vibe)                | ✅       |                                                                                           |
+| [Kimi Code](https://code.kimi.com/)                                      | ✅       |                                                                                           |
+| [Windsurf](https://windsurf.com/)                                        | ✅       |                                                                                           |
+| [Antigravity (agy)](https://antigravity.google/)                         | ✅       | Requires `--ai-skills`                                                                    |
+| Generic                                                                  | ✅       | Bring your own agent — use `--ai generic --ai-commands-dir <path>` for unsupported agents |
 
 ## 🔧 Specify CLI Reference
 
@@ -193,27 +193,27 @@ The `specify` command supports the following options:
 
 ### Commands
 
-| Command | Description                                                                                                                                             |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `init`  | Initialize a new Specify project from the latest template                                                                                               |
+| Command | Description                                                                                                                                                                                  |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `init`  | Initialize a new Specify project from the latest template                                                                                                                                    |
 | `check` | Check for installed tools (`git`, `claude`, `gemini`, `code`/`code-insiders`, `cursor-agent`, `windsurf`, `qwen`, `opencode`, `codex`, `kiro-cli`, `shai`, `qodercli`, `vibe`, `kimi`, `pi`) |
 
 ### `specify init` Arguments & Options
 
-| Argument/Option        | Type     | Description                                                                                                                                                                                  |
-| ---------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `<project-name>`       | Argument | Name for your new project directory (optional if using `--here`, or use `.` for current directory)                                                                                           |
+| Argument/Option        | Type     | Description                                                                                                                                                                                                                                                                                  |
+| ---------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `<project-name>`       | Argument | Name for your new project directory (optional if using `--here`, or use `.` for current directory)                                                                                                                                                                                           |
 | `--ai`                 | Option   | AI assistant to use: `claude`, `gemini`, `copilot`, `cursor-agent`, `qwen`, `opencode`, `codex`, `windsurf`, `kilocode`, `auggie`, `roo`, `codebuddy`, `amp`, `shai`, `kiro-cli` (`kiro` alias), `agy`, `bob`, `qodercli`, `vibe`, `kimi`, `pi`, or `generic` (requires `--ai-commands-dir`) |
-| `--ai-commands-dir`    | Option   | Directory for agent command files (required with `--ai generic`, e.g. `.myagent/commands/`)                                                                                                  |
-| `--script`             | Option   | Script variant to use: `sh` (bash/zsh) or `ps` (PowerShell)                                                                                                                                  |
-| `--ignore-agent-tools` | Flag     | Skip checks for AI agent tools like Claude Code                                                                                                                                              |
-| `--no-git`             | Flag     | Skip git repository initialization                                                                                                                                                           |
-| `--here`               | Flag     | Initialize project in the current directory instead of creating a new one                                                                                                                    |
-| `--force`              | Flag     | Force merge/overwrite when initializing in current directory (skip confirmation)                                                                                                             |
-| `--skip-tls`           | Flag     | Skip SSL/TLS verification (not recommended)                                                                                                                                                  |
-| `--debug`              | Flag     | Enable detailed debug output for troubleshooting                                                                                                                                             |
-| `--github-token`       | Option   | GitHub token for API requests (or set GH_TOKEN/GITHUB_TOKEN env variable)                                                                                                                    |
-| `--ai-skills`          | Flag     | Install Prompt.MD templates as agent skills in agent-specific `skills/` directory (requires `--ai`)                                                                                          |
+| `--ai-commands-dir`    | Option   | Directory for agent command files (required with `--ai generic`, e.g. `.myagent/commands/`)                                                                                                                                                                                                  |
+| `--script`             | Option   | Script variant to use: `sh` (bash/zsh) or `ps` (PowerShell)                                                                                                                                                                                                                                  |
+| `--ignore-agent-tools` | Flag     | Skip checks for AI agent tools like Claude Code                                                                                                                                                                                                                                              |
+| `--no-git`             | Flag     | Skip git repository initialization                                                                                                                                                                                                                                                           |
+| `--here`               | Flag     | Initialize project in the current directory instead of creating a new one                                                                                                                                                                                                                    |
+| `--force`              | Flag     | Force merge/overwrite when initializing in current directory (skip confirmation)                                                                                                                                                                                                             |
+| `--skip-tls`           | Flag     | Skip SSL/TLS verification (not recommended)                                                                                                                                                                                                                                                  |
+| `--debug`              | Flag     | Enable detailed debug output for troubleshooting                                                                                                                                                                                                                                             |
+| `--github-token`       | Option   | GitHub token for API requests (or set GH_TOKEN/GITHUB_TOKEN env variable)                                                                                                                                                                                                                    |
+| `--ai-skills`          | Flag     | Install Prompt.MD templates as agent skills in agent-specific `skills/` directory (requires `--ai`)                                                                                                                                                                                          |
 
 ### Examples
 
